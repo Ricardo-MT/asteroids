@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class player : MonoBehaviour
 {
-    [SerializeField] float speed = 5f;
+    [SerializeField] float speed = 10f;
     Vector2 rawInput;
 
     Vector2 minBounds;
@@ -15,6 +13,13 @@ public class player : MonoBehaviour
     [SerializeField] float paddingRight = 0.5f;
     [SerializeField] float paddingTop = 0.5f;
     [SerializeField] float paddingBottom = 1.5f;
+
+    Shooter shooter;
+
+    void Awake()
+    {
+        shooter = GetComponent<Shooter>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +38,17 @@ public class player : MonoBehaviour
     void Update()
     {
         UpdateMove();
+        HandleFire();
+    }
+
+    private void HandleFire()
+    {
+        shooter.CanFire = (Time.time - shooter.LastFireTime) > shooter.GetFireRate();
+        if (shooter.IsFiring && shooter.CanFire)
+        {
+            shooter.Fire();
+            shooter.LastFireTime = Time.time;
+        }
     }
 
     private void UpdateMove()
@@ -48,6 +64,33 @@ public class player : MonoBehaviour
     void OnMove(InputValue value)
     {
         rawInput = value.Get<Vector2>();
-        Debug.Log(rawInput);
+    }
+
+    void OnFire(InputValue value)
+    {
+        shooter.IsFiring = value.isPressed;
+        if (!value.isPressed)
+        {
+            shooter.LastFireTime = 0f;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        DamageDealer damageDealer = other.gameObject.GetComponent<DamageDealer>();
+        if (damageDealer)
+        {
+            DealWithDamageTaken(damageDealer);
+        }
+    }
+
+    private void DealWithDamageTaken(DamageDealer damageDealer)
+    {
+        Health health = GetComponent<Health>();
+        if (health)
+        {
+            health.TakeDamage(damageDealer.GetDamage());
+        }
+        damageDealer.Hit();
     }
 }

@@ -9,6 +9,8 @@ public class WaveConfigSO : ScriptableObject
     [SerializeField] Transform pathPrefab;
     [SerializeField] float moveSpeed = 5f;
 
+    [SerializeField] float spawnRate = 0.5f;
+
     public Transform GetStartingWaypoint()
     {
         return pathPrefab.GetChild(0);
@@ -35,5 +37,10 @@ public class WaveConfigSO : ScriptableObject
     public float GetMoveSpeed()
     {
         return moveSpeed;
+    }
+
+    public float GetSpawnRate()
+    {
+        return spawnRate;
     }
 }
