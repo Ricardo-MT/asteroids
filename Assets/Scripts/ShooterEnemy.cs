@@ -5,10 +5,17 @@ public class ShooterEnemy : MonoBehaviour
 {
     [SerializeField] GameObject projectilePrefab;
 
-    [SerializeField] float fireRate = 1f;
+    [SerializeField] float fireRate = 0f;
 
 
     float lastFireTime = 0f;
+
+    void Start()
+    {
+        float minFireRate = 0.7f;
+        float maxFireRate = 2.3f;
+        fireRate = Random.Range(minFireRate, maxFireRate);
+    }
 
     void Update()
     {

@@ -3,12 +3,14 @@ using UnityEngine.InputSystem;
 
 public class player : MonoBehaviour
 {
+    [Header("Player movement")]
     [SerializeField] float speed = 10f;
     Vector2 rawInput;
 
     Vector2 minBounds;
     Vector2 maxBounds;
 
+    [Header("Player bounds")]
     [SerializeField] float paddingLeft = 0.5f;
     [SerializeField] float paddingRight = 0.5f;
     [SerializeField] float paddingTop = 0.5f;
@@ -16,9 +18,12 @@ public class player : MonoBehaviour
 
     Shooter shooter;
 
+    CameraShake cameraShake;
+
     void Awake()
     {
         shooter = GetComponent<Shooter>();
+        cameraShake = Camera.main.GetComponent<CameraShake>();
     }
 
     // Start is called before the first frame update
@@ -89,8 +94,17 @@ public class player : MonoBehaviour
         Health health = GetComponent<Health>();
         if (health)
         {
-            health.TakeDamage(damageDealer.GetDamage());
+            bool died = health.TakeDamage(damageDealer.GetDamage());
+            if (!died)
+            {
+                PlayHitEffect();
+            }
         }
         damageDealer.Hit();
+    }
+
+    private void PlayHitEffect()
+    {
+        cameraShake.Shake();
     }
 }

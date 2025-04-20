@@ -237,6 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6abf72c0cc0ad41ab95d2fe9a7b276b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onDestroyedEffectPrefab: {fileID: 329948777859086541, guid: 3ac606aade52b4d5b95f3f9ca9a3bcd4, type: 3}
 --- !u!114 &4256745559028574938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,4 +251,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 504836022053943192, guid: 9d05484a2773445488a0aa056723c9e0, type: 3}
-  fireRate: 1
+  fireRate: 0

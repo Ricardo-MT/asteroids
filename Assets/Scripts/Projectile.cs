@@ -29,15 +29,6 @@ public class Projectile : MonoBehaviour
     void Update()
     {
         Vector3 delta = speed * Time.deltaTime * direction;
-        if (gameObject.name.Contains("Enemy"))
-
-        {
-            Debug.Log("Enemy component found " + direction + delta);
-        }
-        else
-        {
-            Debug.Log("Player component found " + direction + delta);
-        }
         Vector3 newPosition = transform.position + delta;
         transform.position = newPosition;
     }
