@@ -4,6 +4,13 @@ public class enemy : MonoBehaviour
 {
 
     [SerializeField] ParticleSystem onDestroyedEffectPrefab;
+
+    AudioPlayer audioPlayer;
+
+    void Start()
+    {
+        audioPlayer = FindObjectOfType<AudioPlayer>();
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
         DamageDealer damageDealer = other.gameObject.GetComponent<DamageDealer>();
@@ -21,15 +28,20 @@ public class enemy : MonoBehaviour
             bool died = health.TakeDamage(damageDealer.GetDamage());
             if (died)
             {
-                PlayDiedEffect();
+                HandleOnDestroy();
             }
         }
         damageDealer.Hit();
     }
 
+    private void HandleOnDestroy()
+    {
+        audioPlayer.PlayExplosionEnemy();
+        PlayDiedEffect();
+    }
+
     private void PlayDiedEffect()
     {
-        // Play hit effect here
         ParticleSystem particleSystem = Instantiate(onDestroyedEffectPrefab, transform.position, Quaternion.identity);
         Destroy(particleSystem.gameObject, particleSystem.main.duration + particleSystem.main.startLifetime.constantMax);
     }

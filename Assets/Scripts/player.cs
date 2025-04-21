@@ -20,6 +20,8 @@ public class player : MonoBehaviour
 
     CameraShake cameraShake;
 
+    AudioPlayer audioPlayer;
+
     void Awake()
     {
         shooter = GetComponent<Shooter>();
@@ -30,6 +32,7 @@ public class player : MonoBehaviour
     void Start()
     {
         InitBounds();
+        audioPlayer = FindObjectOfType<AudioPlayer>();
     }
 
     void InitBounds()
@@ -52,6 +55,7 @@ public class player : MonoBehaviour
         if (shooter.IsFiring && shooter.CanFire)
         {
             shooter.Fire();
+            audioPlayer.PlayShootingClipPlayer();
             shooter.LastFireTime = Time.time;
         }
     }
@@ -95,16 +99,26 @@ public class player : MonoBehaviour
         if (health)
         {
             bool died = health.TakeDamage(damageDealer.GetDamage());
-            if (!died)
+            if (died)
             {
-                PlayHitEffect();
+                HandleOnDestroy();
+            }
+            else
+            {
+                HandleOnHit();
             }
         }
         damageDealer.Hit();
     }
 
-    private void PlayHitEffect()
+    private void HandleOnHit()
     {
         cameraShake.Shake();
+        audioPlayer.PlayHitPlayer();
+    }
+
+    private void HandleOnDestroy()
+    {
+        audioPlayer.PlayExplosionPlayer();
     }
 }

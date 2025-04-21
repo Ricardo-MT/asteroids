@@ -7,14 +7,21 @@ public class ShooterEnemy : MonoBehaviour
 
     [SerializeField] float fireRate = 0f;
 
+    AudioPlayer audioPlayer;
 
     float lastFireTime = 0f;
 
+    void Awake()
+    {
+        float minFireRate = 1.3f;
+        float maxFireRate = 2.7f;
+        fireRate = Random.Range(minFireRate, maxFireRate);
+    }
+
     void Start()
     {
-        float minFireRate = 0.7f;
-        float maxFireRate = 2.3f;
-        fireRate = Random.Range(minFireRate, maxFireRate);
+        audioPlayer = FindObjectOfType<AudioPlayer>();
+        lastFireTime = Time.time;
     }
 
     void Update()
@@ -28,6 +35,7 @@ public class ShooterEnemy : MonoBehaviour
         if (canFire)
         {
             Fire();
+            audioPlayer.PlayShootingClipEnemy();
             lastFireTime = Time.time;
         }
     }
