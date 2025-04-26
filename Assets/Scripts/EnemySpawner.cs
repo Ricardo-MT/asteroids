@@ -9,9 +9,12 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] List<WaveConfigSO> waveConfigs;
     WaveConfigSO currentWave;
 
+    MyEventManager eventManager;
+
     void Start()
     {
         StartCoroutine(RunWaves());
+        eventManager = FindObjectOfType<MyEventManager>();
     }
 
     public WaveConfigSO GetCurrentWave()
@@ -45,7 +48,9 @@ public class EnemySpawner : MonoBehaviour
         // with a rate of spawnRate
         for (int i = 0; i < currentWave.GetEnemyCount(); i++)
         {
-            Instantiate(currentWave.GetEnemyPrefab(i), currentWave.GetStartingWaypoint().position, Quaternion.identity, this.transform);
+            var enemy = Instantiate(currentWave.GetEnemyPrefab(i), currentWave.GetStartingWaypoint().position, Quaternion.identity, this.transform);
+            var enemyScript = enemy.GetComponent<Enemy>();
+            enemyScript.OnEnemyDestroyed += () => eventManager.Trigger(new EnemyDestroyedEvent(enemyScript));
             yield return new WaitForSeconds(currentWave.GetSpawnRate());
         }
     }

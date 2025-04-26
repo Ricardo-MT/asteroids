@@ -14,13 +14,15 @@ public class player : MonoBehaviour
     [SerializeField] float paddingLeft = 0.5f;
     [SerializeField] float paddingRight = 0.5f;
     [SerializeField] float paddingTop = 0.5f;
-    [SerializeField] float paddingBottom = 1.5f;
+    [SerializeField] float paddingBottom = 1f;
 
     Shooter shooter;
 
     CameraShake cameraShake;
 
     AudioPlayer audioPlayer;
+
+    MyEventManager eventManager;
 
     void Awake()
     {
@@ -33,6 +35,7 @@ public class player : MonoBehaviour
     {
         InitBounds();
         audioPlayer = FindObjectOfType<AudioPlayer>();
+        eventManager = FindObjectOfType<MyEventManager>();
     }
 
     void InitBounds()
@@ -99,6 +102,7 @@ public class player : MonoBehaviour
         if (health)
         {
             bool died = health.TakeDamage(damageDealer.GetDamage());
+            eventManager.Trigger(new PlayerHealthChanged(health.GetHealth(), health.GetMaxHealth()));
             if (died)
             {
                 HandleOnDestroy();

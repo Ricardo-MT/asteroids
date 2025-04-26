@@ -5,12 +5,6 @@ public class Health : MonoBehaviour
     [SerializeField] float health;
     [SerializeField] float maxHealth;
 
-    public Health(float? health)
-    {
-        this.health = health ?? 100f;
-        this.maxHealth = health ?? 100f;
-    }
-
     public bool TakeDamage(float damage)
     {
         health = Mathf.Clamp(health - damage, 0, maxHealth);
@@ -25,11 +19,7 @@ public class Health : MonoBehaviour
 
     public void Heal(float amount)
     {
-        health += amount;
-        if (health > maxHealth)
-        {
-            health = maxHealth;
-        }
+        health = Mathf.Clamp(health + amount, 0, maxHealth);
     }
 
     private void Die()
@@ -37,7 +27,7 @@ public class Health : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public float GetCurrentHealth()
+    public float GetHealth()
     {
         return health;
     }

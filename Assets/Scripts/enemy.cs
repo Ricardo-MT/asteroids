@@ -1,16 +1,26 @@
+using System;
 using UnityEngine;
 
-public class enemy : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
 
     [SerializeField] ParticleSystem onDestroyedEffectPrefab;
 
     AudioPlayer audioPlayer;
 
+    Action onEnemyDestroyed;
+
     void Start()
     {
         audioPlayer = FindObjectOfType<AudioPlayer>();
     }
+
+    public Action OnEnemyDestroyed
+    {
+        get => onEnemyDestroyed;
+        set => onEnemyDestroyed = value;
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         DamageDealer damageDealer = other.gameObject.GetComponent<DamageDealer>();
@@ -44,5 +54,10 @@ public class enemy : MonoBehaviour
     {
         ParticleSystem particleSystem = Instantiate(onDestroyedEffectPrefab, transform.position, Quaternion.identity);
         Destroy(particleSystem.gameObject, particleSystem.main.duration + particleSystem.main.startLifetime.constantMax);
+    }
+
+    void OnDestroy()
+    {
+        onEnemyDestroyed?.Invoke();
     }
 }
