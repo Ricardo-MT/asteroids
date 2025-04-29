@@ -24,6 +24,8 @@ public class player : MonoBehaviour
 
     MyEventManager eventManager;
 
+    LevelManagerScript levelManager;
+
     void Awake()
     {
         shooter = GetComponent<Shooter>();
@@ -36,6 +38,7 @@ public class player : MonoBehaviour
         InitBounds();
         audioPlayer = FindObjectOfType<AudioPlayer>();
         eventManager = FindObjectOfType<MyEventManager>();
+        levelManager = FindObjectOfType<LevelManagerScript>();
     }
 
     void InitBounds()
@@ -124,5 +127,6 @@ public class player : MonoBehaviour
     private void HandleOnDestroy()
     {
         audioPlayer.PlayExplosionPlayer();
+        levelManager.LoadGameOver();
     }
 }
