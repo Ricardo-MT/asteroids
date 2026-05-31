@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         StartCoroutine(RunWaves());
-        eventManager = FindObjectOfType<MyEventManager>();
+        eventManager = FindAnyObjectByType<MyEventManager>();
     }
 
     public WaveConfigSO GetCurrentWave()

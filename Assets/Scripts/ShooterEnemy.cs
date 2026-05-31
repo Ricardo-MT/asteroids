@@ -20,7 +20,7 @@ public class ShooterEnemy : MonoBehaviour
 
     void Start()
     {
-        audioPlayer = FindObjectOfType<AudioPlayer>();
+        audioPlayer = FindAnyObjectByType<AudioPlayer>();
         lastFireTime = Time.time;
     }
 

@@ -36,9 +36,9 @@ public class player : MonoBehaviour
     void Start()
     {
         InitBounds();
-        audioPlayer = FindObjectOfType<AudioPlayer>();
-        eventManager = FindObjectOfType<MyEventManager>();
-        levelManager = FindObjectOfType<LevelManagerScript>();
+        audioPlayer = FindAnyObjectByType<AudioPlayer>();
+        eventManager = FindAnyObjectByType<MyEventManager>();
+        levelManager = FindAnyObjectByType<LevelManagerScript>();
     }
 
     void InitBounds()

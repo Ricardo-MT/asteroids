@@ -9,7 +9,7 @@ public class PlayerScoreUI : MonoBehaviour
     void Start()
     {
         text = GetComponent<TextMeshProUGUI>();
-        eventManager = FindObjectOfType<MyEventManager>();
+        eventManager = FindAnyObjectByType<MyEventManager>();
         eventManager.AddEventListener<ScoreUpdateEvent>(OnPlayerScoreChanged);
     }
 

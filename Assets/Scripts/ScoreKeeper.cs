@@ -7,7 +7,7 @@ public class ScoreKeeper : MonoBehaviour
     MyEventManager eventManager;
     void Start()
     {
-        eventManager = FindObjectOfType<MyEventManager>();
+        eventManager = FindAnyObjectByType<MyEventManager>();
         eventManager.AddEventListener<EnemyDestroyedEvent>(OnEnemyDestroyed);
     }
     private void OnEnemyDestroyed(EnemyDestroyedEvent enemyDestroyedEvent)

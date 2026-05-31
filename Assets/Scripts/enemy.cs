@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        audioPlayer = FindObjectOfType<AudioPlayer>();
+        audioPlayer = FindAnyObjectByType<AudioPlayer>();
     }
 
     public Action OnEnemyDestroyed

@@ -14,7 +14,7 @@ public class PlayerHealthUI : MonoBehaviour
     {
         text = GetComponentInChildren<TextMeshProUGUI>();
         healthSlider = GetComponentInChildren<Slider>();
-        eventManager = FindObjectOfType<MyEventManager>();
+        eventManager = FindAnyObjectByType<MyEventManager>();
         eventManager.AddEventListener<PlayerHealthChanged>(OnPlayerHealthChanged);
     }
 
