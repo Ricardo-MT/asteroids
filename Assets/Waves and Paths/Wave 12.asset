@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88cd3a991234f4504b05a73f25909bc5, type: 3}
-  m_Name: Wave 5
+  m_Name: Wave 12
   m_EditorClassIdentifier: 
   enemyPrefabs:
-  - {fileID: 2759958015276214139, guid: 047c3d5202c243e4bdbd51da0749f578, type: 3}
-  - {fileID: 2759958015276214139, guid: 047c3d5202c243e4bdbd51da0749f578, type: 3}
-  - {fileID: 2759958015276214139, guid: 047c3d5202c243e4bdbd51da0749f578, type: 3}
-  pathPrefab: {fileID: 5000001, guid: 77c15d6696fb4ae79fb3b4e4e65a832c, type: 3}
-  moveSpeed: 5.4
+  - {fileID: 2759958015276214139, guid: 88608a1f80a44e269b14626fa6fcda48, type: 3}
+  - {fileID: 2759958015276214139, guid: 88608a1f80a44e269b14626fa6fcda48, type: 3}
+  - {fileID: 2759958015276214139, guid: 88608a1f80a44e269b14626fa6fcda48, type: 3}
+  pathPrefab: {fileID: 4000001, guid: 9a6c3d2f28c0464fa7a181b5a8134d91, type: 3}
+  moveSpeed: 6
   spawnRate: 0.6
