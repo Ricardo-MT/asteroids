@@ -15,13 +15,6 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 2759958015276214139, guid: e10d6ca2f1198467eacbc19a033a234e, type: 3}
   - {fileID: 2759958015276214139, guid: e10d6ca2f1198467eacbc19a033a234e, type: 3}
-  - {fileID: 2759958015276214139, guid: e10d6ca2f1198467eacbc19a033a234e, type: 3}
-  - {fileID: 2759958015276214139, guid: e10d6ca2f1198467eacbc19a033a234e, type: 3}
-  - {fileID: 2759958015276214139, guid: e10d6ca2f1198467eacbc19a033a234e, type: 3}
-  - {fileID: 2759958015276214139, guid: e10d6ca2f1198467eacbc19a033a234e, type: 3}
-  - {fileID: 2759958015276214139, guid: e10d6ca2f1198467eacbc19a033a234e, type: 3}
-  - {fileID: 2759958015276214139, guid: e10d6ca2f1198467eacbc19a033a234e, type: 3}
-  - {fileID: 2759958015276214139, guid: e10d6ca2f1198467eacbc19a033a234e, type: 3}
   pathPrefab: {fileID: 6000001, guid: b6e53f0e976943d2a33b72ff1cbf72ae, type: 3}
   moveSpeed: 6.2
-  spawnRate: 0.28
+  spawnRate: 1
